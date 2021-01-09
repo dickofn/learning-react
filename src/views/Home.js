@@ -5,21 +5,20 @@ import { useAxiosGet } from "../hooks/HttpRequest";
 function Home() {
   const url = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`;
 
-  let { data, error, loading } = useAxiosGet(url);
-  const products = data;
+  let products = useAxiosGet(url);
 
   let content = null;
 
-  if (loading) {
+  if (products.loading) {
     content = <Loader />;
   }
 
-  if (error) {
+  if (products.error) {
     content = <div className="text-red-500"> Error </div>;
   }
 
-  if (products) {
-    content = products.results.map((product) => (
+  if (products.data) {
+    content = products.data.results.map((product) => (
       <div key={product.url}>
         <ProductCard product={product} />
       </div>
