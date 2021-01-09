@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 
 import Home from "./views/Home";
 import About from "./views/About";
+import Product from "./views/Product";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home />
+            </Route>
+
+            <Route path="/product/:id">
+              <Product />
             </Route>
 
             <Route path="/about">
