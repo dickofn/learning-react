@@ -1,32 +1,17 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import Loader from "../components/Loader";
+import { useAxiosGet } from "../hooks/HttpRequest";
 
 function Product() {
   const { id } = useParams();
 
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+
+  let { data, loading, error } = useAxiosGet(url);
+  const product = data;
 
   let content = null;
-
-  useEffect(() => {
-    setLoading(true);
-    axios
-      .get(url)
-      .then((res) => {
-        setLoading(false);
-        setProduct(res.data);
-      })
-      .catch(() => {
-        setLoading(false);
-        setError(true);
-      });
-  }, [url]);
 
   if (loading) {
     content = <Loader />;
