@@ -1,5 +1,6 @@
 {
   "name": "learning-react",
+  "homepage": "https://dickofn.gitlab.io/learning-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
