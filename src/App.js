@@ -10,7 +10,7 @@ import Product from "./views/Product";
 function App() {
   return (
     <div className="relative pb-8 min-h-screen">
-      <Router>
+      <Router basename="/learning-react">
         <Header />
 
         <div className="p-3">
