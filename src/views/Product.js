@@ -1,43 +1,73 @@
 import { useParams } from "react-router-dom";
 
 import Loader from "../components/Loader";
-import { useAxiosGet } from "../hooks/HttpRequest";
+import { gql, useQuery } from '@apollo/client';
 
 function Product() {
   const { id } = useParams();
 
-  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const GET_POKEMON = gql`
+    query pokemon($name: String!) {
+      pokemon(name: $name) {
+        id
+        name
+        sprites {
+          front_default
+        }
+        moves {
+          move {
+            name
+          }
+        }
+        types {
+          type {
+            name
+          }
+        }
+        height
+        weight
+      }
+    }
+  `;
 
-  let product = useAxiosGet(url);
+  const gqlVariables = {
+    "name": "ditto"
+  };
+
+  const { loading, error, data } = useQuery(GET_POKEMON, {
+    variables: gqlVariables,
+  });
 
   let content = null;
 
-  if (product.loading) {
+  if (loading) {
     content = <Loader />;
   }
 
-  if (product.error) {
+  if (error) {
     content = <div className="text-red-500"> {id} is not registered yet</div>;
   }
 
-  if (product.data) {
+  if (data) {
+    const product = data.pokemon;
+
     content = (
       <div>
         <h1 className="text-2xl font-bold mb-3 uppercase text-center">
-          {product.data.name}
+          {product.name}
         </h1>
 
         <div>
           <img
-            src={product.data.sprites.front_default}
-            alt={product.data.name}
+            src={product.sprites.front_default}
+            alt={product.name}
             className="mx-auto"
           />
         </div>
 
-        <div className="font-bold text-xl mb-3">{product.data.weight} kg</div>
+        <div className="font-bold text-xl mb-3">{product.weight} kg</div>
 
-        <div>{product.data.height} m</div>
+        <div>{product.height} m</div>
       </div>
     );
   }
