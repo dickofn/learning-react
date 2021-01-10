@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
+import { gql, useQuery } from "@apollo/client";
 
 import Loader from "../components/Loader";
-import { gql, useQuery } from '@apollo/client';
 
 function Product() {
   const { id } = useParams();
@@ -31,7 +31,7 @@ function Product() {
   `;
 
   const gqlVariables = {
-    "name": "ditto"
+    name: "ditto",
   };
 
   const { loading, error, data } = useQuery(GET_POKEMON, {
@@ -49,25 +49,23 @@ function Product() {
   }
 
   if (data) {
-    const product = data.pokemon;
-
     content = (
       <div>
         <h1 className="text-2xl font-bold mb-3 uppercase text-center">
-          {product.name}
+          {data.pokemon.name}
         </h1>
 
         <div>
           <img
-            src={product.sprites.front_default}
-            alt={product.name}
+            src={data.pokemon.sprites.front_default}
+            alt={data.pokemon.name}
             className="mx-auto"
           />
         </div>
 
-        <div className="font-bold text-xl mb-3">{product.weight} kg</div>
+        <div className="font-bold text-xl mb-3">{data.pokemon.weight} kg</div>
 
-        <div>{product.height} m</div>
+        <div>{data.pokemon.height} m</div>
       </div>
     );
   }

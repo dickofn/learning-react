@@ -1,26 +1,51 @@
+import { gql, useQuery } from "@apollo/client";
+
 import Loader from "../components/Loader";
 import ProductCard from "../components/ProductCard";
-import { useAxiosGet } from "../hooks/HttpRequest";
 
 function Home() {
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`;
+  const GET_POKEMONS = gql`
+    query pokemons($limit: Int, $offset: Int) {
+      pokemons(limit: $limit, offset: $offset) {
+        count
+        next
+        previous
+        nextOffset
+        prevOffset
+        status
+        message
+        results {
+          url
+          name
+          image
+        }
+      }
+    }
+  `;
 
-  let products = useAxiosGet(url);
+  const gqlVariables = {
+    limit: 20,
+    offset: 0,
+  };
+
+  const { loading, error, data } = useQuery(GET_POKEMONS, {
+    variables: gqlVariables,
+  });
 
   let content = null;
 
-  if (products.loading) {
+  if (loading) {
     content = <Loader />;
   }
 
-  if (products.error) {
+  if (error) {
     content = <div className="text-red-500"> Error </div>;
   }
 
-  if (products.data) {
-    content = products.data.results.map((product) => (
-      <div key={product.url}>
-        <ProductCard product={product} />
+  if (data) {
+    content = data.pokemons.results.map((i) => (
+      <div key={i.url}>
+        <ProductCard product={i} />
       </div>
     ));
   }
