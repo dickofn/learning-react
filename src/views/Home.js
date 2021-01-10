@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 
 import Loader from "../components/Loader";
@@ -23,13 +24,13 @@ function Home() {
     }
   `;
 
-  const gqlVariables = {
+  const [gqlVar, setGqlVar] = useState({
     limit: 20,
     offset: 0,
-  };
+  })
 
   const { loading, error, data } = useQuery(GET_POKEMONS, {
-    variables: gqlVariables,
+    variables: gqlVar,
   });
 
   let content = null;
