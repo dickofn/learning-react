@@ -2,7 +2,7 @@ import { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 
 import Loader from "../components/Loader";
-import ProductCard from "../components/ProductCard";
+import PokemonListCard from "../components/PokemonListCard";
 
 function Home() {
   const GET_POKEMONS = gql`
@@ -46,7 +46,7 @@ function Home() {
   if (data) {
     content = data.pokemons.results.map((i) => (
       <div key={i.url}>
-        <ProductCard product={i} />
+        <PokemonListCard pokemon={i} />
       </div>
     ));
   }

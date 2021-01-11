@@ -31,7 +31,7 @@ function Product() {
   `;
 
   const gqlVariables = {
-    name: "ditto",
+    name: id,
   };
 
   const { loading, error, data } = useQuery(GET_POKEMON, {

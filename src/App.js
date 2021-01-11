@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 
 import Home from "./views/Home";
 import About from "./views/About";
-import Product from "./views/Product";
+import Pokemon from "./views/Pokemon";
 
 function App() {
   return (
@@ -19,8 +19,8 @@ function App() {
               <Home />
             </Route>
 
-            <Route path="/product/:id">
-              <Product />
+            <Route path="/pokemon/:id">
+              <Pokemon />
             </Route>
 
             <Route path="/about">
