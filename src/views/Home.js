@@ -27,7 +27,12 @@ function Home() {
   const [gqlVar, setGqlVar] = useState({
     limit: 20,
     offset: 0,
-  })
+  });
+
+  setGqlVar({
+    limit: 20,
+    offset: 0,
+  });
 
   const { loading, error, data } = useQuery(GET_POKEMONS, {
     variables: gqlVar,
