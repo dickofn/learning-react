@@ -47,8 +47,8 @@ function hexToRgb(hex) {
 export function getContrastTextColorByType(type) {
   const { r, g, b } = hexToRgb(colours[type]);
   if (r * 0.299 + g * 0.587 + b * 0.114 > 186) {
-    return "#222";
+    return "#121212";
   } else {
-    return "#eee";
+    return "#fefefe";
   }
 }
