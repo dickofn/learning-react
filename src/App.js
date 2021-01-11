@@ -13,21 +13,19 @@ function App() {
       <Router basename="/learning-react">
         <Header />
 
-        <div className="p-3">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
 
-            <Route path="/pokemon/:id">
-              <Pokemon />
-            </Route>
+          <Route path="/pokemon/:id">
+            <Pokemon />
+          </Route>
 
-            <Route path="/about">
-              <About />
-            </Route>
-          </Switch>
-        </div>
+          <Route path="/about">
+            <About />
+          </Route>
+        </Switch>
 
         <Footer />
       </Router>
