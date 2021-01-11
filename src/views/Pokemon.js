@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { gql, useQuery } from "@apollo/client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,8 +8,7 @@ import { faGem } from "@fortawesome/free-solid-svg-icons";
 import { faGem as farGem } from "@fortawesome/free-regular-svg-icons";
 
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-
+import { css, ClassNames } from "@emotion/react";
 import { getContrastTextColorByType } from "../helper/pokemon-helper";
 
 import Loader from "../components/Loader";
@@ -67,7 +67,9 @@ function Pokemon() {
   }
 
   if (error) {
-    content = <div className="text-red-500"> {id} is not registered yet</div>;
+    content = (
+      <div className="text-red-500">There's an error found, try refreshing</div>
+    );
   }
 
   const [isShiny, setIsShiny] = useState(false);
@@ -90,8 +92,7 @@ function Pokemon() {
         >
           {data.pokemon.name}
         </h1>
-
-        <div>
+        <div className="mb-4">
           <img
             src={
               isShiny
@@ -102,8 +103,7 @@ function Pokemon() {
             className="mx-auto h-40 w-40"
           />
         </div>
-
-        <div className="text-center">
+        <div className="text-center mb-4">
           <button
             onClick={() => setIsShiny(!isShiny)}
             className={
@@ -122,9 +122,45 @@ function Pokemon() {
           </button>
         </div>
 
-        <div className="font-bold text-xl mb-3">{data.pokemon.weight} kg</div>
+        <ClassNames>
+          {({ css, cx }) => (
+            <Tabs
+              selectedTabClassName={cx(
+                css(contrastTextStyle),
+                `bg-${pokemonType} border-b-0`
+              )}
+              selectedTabPanelClassName={`border border-${pokemonType} mt-3 rounded-b px-4`}
+            >
+              <TabList className="flex font-medium">
+                <Tab
+                  className={`w-1/3  border border-${pokemonType}  py-3 rounded-t text-center `}
+                >
+                  Summary
+                </Tab>
+                <Tab
+                  className={`w-1/3  border border-${pokemonType}  py-3  rounded-t text-center mx-2`}
+                >
+                  Moves
+                </Tab>
+                <Tab
+                  className={`w-1/3  border border-${pokemonType}  py-3 rounded-t text-center `}
+                >
+                  Evolution
+                </Tab>
+              </TabList>
 
-        <div>{data.pokemon.height} m</div>
+              <TabPanel>
+                <div>Any content 1</div>
+              </TabPanel>
+              <TabPanel>
+                <div>Any content 2</div>
+              </TabPanel>
+              <TabPanel>
+                <div>Any content 3</div>
+              </TabPanel>
+            </Tabs>
+          )}
+        </ClassNames>
       </div>
     );
   }
