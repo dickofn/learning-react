@@ -40,16 +40,16 @@ function Summary(props) {
       <table className="w-full">
         <tbody>
           <tr>
-            <td className="font-medium">Types</td>
-            <td>{types}</td>
+            <td className="font-medium align-baseline">Types</td>
+            <td className="pb-3">{types}</td>
           </tr>
           <tr>
-            <td className="font-medium pt-3">Height</td>
-            <td className="pt-3">{data.height / 10} m</td>
+            <td className="font-medium align-baseline">Height</td>
+            <td>{data.height / 10} m</td>
           </tr>
           <tr>
-            <td className="font-medium pb-3">Weight</td>
-            <td className="pb-3">{data.weight} kg</td>
+            <td className="font-medium align-baseline">Weight</td>
+            <td className="pb-3">{data.weight / 10} kg</td>
           </tr>
           {stats}
         </tbody>
