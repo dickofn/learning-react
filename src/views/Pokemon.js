@@ -129,21 +129,32 @@ function Pokemon() {
                 css(contrastTextStyle),
                 `bg-${pokemonType} border-b-0`
               )}
-              selectedTabPanelClassName={`border border-${pokemonType} mt-2 rounded px-4`}
+              selectedTabPanelClassName={
+                "border mt-2 rounded px-4  border-" + pokemonType
+              }
             >
               <TabList className="flex font-medium">
                 <Tab
-                  className={`w-1/3  border border-${pokemonType}  py-3 rounded text-center `}
+                  className={
+                    "w-1/3 border py-3 rounded text-center border-" +
+                    pokemonType
+                  }
                 >
                   Summary
                 </Tab>
                 <Tab
-                  className={`w-1/3  border border-${pokemonType}  py-3  rounded text-center mx-2`}
+                  className={
+                    "w-1/3 border py-3 rounded text-center mx-2 border-" +
+                    pokemonType
+                  }
                 >
                   Moves
                 </Tab>
                 <Tab
-                  className={`w-1/3  border border-${pokemonType}  py-3 rounded text-center `}
+                  className={
+                    "w-1/3 border py-3 rounded text-center border-" +
+                    pokemonType
+                  }
                 >
                   Evolution
                 </Tab>
