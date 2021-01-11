@@ -28,6 +28,7 @@ module.exports = {
   variants: {
     extend: {
       backgroundOpacity: ["hover", "focus"],
+      margin: ["last"],
     },
   },
   plugins: [],
