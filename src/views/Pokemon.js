@@ -103,11 +103,11 @@ function Pokemon() {
             className="mx-auto h-40 w-40"
           />
         </div>
-        <div className="text-center mb-4">
+        <div className="text-right mb-4">
           <button
             onClick={() => setIsShiny(!isShiny)}
             className={
-              "rounded-full py-3 px-5 flex justify-center items-center ml-auto transition-all duration-200 focus:outline-none hover:bg-opacity-90 bg-" +
+              "rounded-full py-3 px-6 transition-all duration-200 focus:outline-none focus:bg-opacity-90 hover:bg-opacity-90 bg-" +
               pokemonType
             }
             css={contrastTextStyle}
