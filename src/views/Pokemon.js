@@ -14,7 +14,6 @@ import { getContrastTextColorByType } from "../helper/pokemon-helper";
 import Loader from "../components/Loader";
 import Summary from "../components/pokemon/Summary";
 import Move from "../components/pokemon/Move";
-import Evolution from "../components/pokemon/Evolution";
 
 function Pokemon() {
   const { id } = useParams();
@@ -144,7 +143,7 @@ function Pokemon() {
               <TabList className="flex font-medium">
                 <Tab
                   className={
-                    "w-1/3 border py-3 rounded text-center border-" +
+                    "w-1/2 border py-3 rounded text-center border-" +
                     pokemonType
                   }
                 >
@@ -152,19 +151,11 @@ function Pokemon() {
                 </Tab>
                 <Tab
                   className={
-                    "w-1/3 border py-3 rounded text-center mx-2 border-" +
+                    "w-1/2 border py-3 rounded text-center mx-2 border-" +
                     pokemonType
                   }
                 >
                   Moves
-                </Tab>
-                <Tab
-                  className={
-                    "w-1/3 border py-3 rounded text-center border-" +
-                    pokemonType
-                  }
-                >
-                  Evolution
                 </Tab>
               </TabList>
 
@@ -173,9 +164,6 @@ function Pokemon() {
               </TabPanel>
               <TabPanel>
                 <Move data={data.pokemon} />
-              </TabPanel>
-              <TabPanel>
-                <Evolution data={data.pokemon} />
               </TabPanel>
             </Tabs>
           )}
