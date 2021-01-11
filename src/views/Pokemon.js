@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { gql, useQuery } from "@apollo/client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGem } from "@fortawesome/free-solid-svg-icons";
+import { faGem, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faGem as farGem } from "@fortawesome/free-regular-svg-icons";
 
 /** @jsxImportSource @emotion/react */
@@ -12,6 +12,9 @@ import { css, ClassNames } from "@emotion/react";
 import { getContrastTextColorByType } from "../helper/pokemon-helper";
 
 import Loader from "../components/Loader";
+import Summary from "../components/pokemon/Summary";
+import Move from "../components/pokemon/Move";
+import Evolution from "../components/pokemon/Evolution";
 
 function Pokemon() {
   const { id } = useParams();
@@ -85,11 +88,16 @@ function Pokemon() {
       <div className="px-4">
         <h1
           className={
-            "-mx-4 py-3 text-2xl font-bold mb-3 uppercase text-center text-white bg-" +
+            "relative -mx-4 py-3 text-2xl font-bold mb-3 uppercase text-center bg-" +
             pokemonType
           }
           css={contrastTextStyle}
         >
+          <div className="absolute left-0 top-0 bottom-0 flex items-center ml-4">
+            <Link to="/">
+              <FontAwesomeIcon icon={faChevronLeft} css={contrastTextStyle} />
+            </Link>
+          </div>
           {data.pokemon.name}
         </h1>
         <div className="mb-4">
@@ -161,13 +169,13 @@ function Pokemon() {
               </TabList>
 
               <TabPanel>
-                <div>Any content 1</div>
+                <Summary data={data.pokemon} />
               </TabPanel>
               <TabPanel>
-                <div>Any content 2</div>
+                <Move data={data.pokemon} />
               </TabPanel>
               <TabPanel>
-                <div>Any content 3</div>
+                <Evolution data={data.pokemon} />
               </TabPanel>
             </Tabs>
           )}
