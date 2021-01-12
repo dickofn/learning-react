@@ -6,28 +6,34 @@ import Home from "./views/Home";
 import About from "./views/About";
 import Pokemon from "./views/Pokemon";
 
+import PokemonContext from "./contexts/PokemonsContext";
+
 function App() {
+  const MyPokemons = JSON.parse(localStorage.getItem("pokemons")) || [];
+
   return (
     <div className="relative min-h-screen">
-      <Router basename="/learning-react">
-        <Header />
+      <PokemonContext.Provider value={MyPokemons}>
+        <Router basename="/learning-react">
+          <Header />
 
-        <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route path="/pokemon/:id">
-            <div className="pb-20">
-              <Pokemon />
-            </div>
-          </Route>
+            <Route path="/pokemon/:id">
+              <div className="pb-20">
+                <Pokemon />
+              </div>
+            </Route>
 
-          <Route path="/about">
-            <About />
-          </Route>
-        </Switch>
-      </Router>
+            <Route path="/about">
+              <About />
+            </Route>
+          </Switch>
+        </Router>
+      </PokemonContext.Provider>
     </div>
   );
 }

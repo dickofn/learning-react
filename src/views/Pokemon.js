@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGem, faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { faGem as farGem } from "@fortawesome/free-regular-svg-icons";
 
+import imgPokeball from "../assets/pokeball.png";
+
 /** @jsxImportSource @emotion/react */
 import { css, ClassNames } from "@emotion/react";
 import {
@@ -17,6 +19,7 @@ import {
 import Loader from "../components/Loader";
 import Summary from "../components/pokemon/Summary";
 import Move from "../components/pokemon/Move";
+import PopUp from "../components/pokemon/PopUp";
 
 function Pokemon() {
   const { id } = useParams();
@@ -141,7 +144,20 @@ function Pokemon() {
                 />
               </div>
             </div>
-            <div className="text-right mb-4">
+            <div className="flex justify-between items-center mb-4">
+              <button
+                onClick={() => catchEm(data.pokemon.name)}
+                className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none bg-gray-800 text-white"
+              >
+                <div className="flex justify-center items-center">
+                  <img
+                    src={imgPokeball}
+                    alt="Pokeball"
+                    className="h-6 w-6 mr-2"
+                  ></img>
+                  <div className="font-bold">Catch</div>
+                </div>
+              </button>
               <button
                 onClick={() => setIsShiny(!isShiny)}
                 className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none"
@@ -200,7 +216,27 @@ function Pokemon() {
     );
   }
 
-  return <div>{content}</div>;
+  const [popUp, setPopUp] = useState(null);
+
+  function catchEm(name) {
+    const random = Math.random() < 0.5;
+    if (random) {
+      setPopUp(name);
+    } else {
+      setPopUp("01");
+    }
+  }
+
+  function closePopUp() {
+    setPopUp(null);
+  }
+
+  return (
+    <div>
+      {popUp ? <PopUp name={popUp} toggle={() => closePopUp()} /> : null}
+      {content}
+    </div>
+  );
 }
 
 export default Pokemon;
