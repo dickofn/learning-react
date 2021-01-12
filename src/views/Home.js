@@ -17,9 +17,7 @@ function Home() {
         nextOffset
         prevOffset
         results {
-          url
           name
-          image
           id
         }
       }
@@ -92,7 +90,7 @@ function Home() {
       <div>
         <div className="mb-5">
           {data.pokemons.results.map((i) => (
-            <div key={i.url}>
+            <div key={i.name}>
               <PokemonListCard pokemon={i} />
             </div>
           ))}
