@@ -1,7 +1,3 @@
-/** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { getContrastTextColorByType } from "../../helper/pokemon-helper";
-
 function Move(props) {
   const data = props.data;
 
