@@ -16,7 +16,7 @@ function Loader() {
   const loaderStyle = css`
     border: 5px solid #f3f3f3;
     border-radius: 50%;
-    border-top: 5px solid #3498db;
+    border-top: 5px solid #111827;
     width: 50px;
     height: 50px;
     -webkit-animation: ${spinAnimation} 2s linear infinite; /* Safari */

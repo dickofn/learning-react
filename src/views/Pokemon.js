@@ -68,7 +68,11 @@ function Pokemon() {
   let content = null;
 
   if (loading) {
-    content = <Loader />;
+    content = (
+      <div className="p-4">
+        <Loader />
+      </div>
+    );
   }
 
   if (error) {
