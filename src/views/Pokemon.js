@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import { gql, useQuery } from "@apollo/client";
 
@@ -20,6 +20,10 @@ import Move from "../components/pokemon/Move";
 
 function Pokemon() {
   const { id } = useParams();
+
+  const urlQuery = new URLSearchParams(useLocation().search);
+
+  const fromOffset = urlQuery.get("fromOffset") || null;
 
   const GET_POKEMON = gql`
     query pokemon($name: String!) {
@@ -107,7 +111,7 @@ function Pokemon() {
               css={cx(css(contrastTextStyle), css(bgPokemonType))}
             >
               <div className="absolute left-0 top-0 bottom-0 flex items-center ml-4">
-                <Link to="/">
+                <Link to={`/${fromOffset ? "?offset=" + fromOffset : ""}`}>
                   <FontAwesomeIcon
                     icon={faChevronLeft}
                     css={contrastTextStyle}
