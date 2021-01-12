@@ -136,7 +136,7 @@ function Pokemon() {
             <div className="text-right mb-4">
               <button
                 onClick={() => setIsShiny(!isShiny)}
-                className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none focus:bg-opacity-90 hover:bg-opacity-90"
+                className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none"
                 css={cx(css(contrastTextStyle), css(bgPokemonType))}
               >
                 <div className="flex justify-center items-center">
