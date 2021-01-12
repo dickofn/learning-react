@@ -1,6 +1,9 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
-import { getContrastTextColorByType } from "../../helper/pokemon-helper";
+import { css, ClassNames } from "@emotion/react";
+import {
+  getContrastTextColorByType,
+  getColorByType,
+} from "../../helper/pokemon-helper";
 
 function Summary(props) {
   const data = props.data;
@@ -10,14 +13,22 @@ function Summary(props) {
       color: ${getContrastTextColorByType(i.type.name)};
     `;
 
+    const bgPokemonType = css`
+      background-color: ${getColorByType(i.type.name)};
+    `;
+
     return (
-      <span
-        key={i.type.name}
-        className={"mr-1 last:mr-0 p-1 rounded bg-" + i.type.name}
-        css={contrastTextStyle}
-      >
-        {i.type.name.charAt(0).toUpperCase() + i.type.name.slice(1)}
-      </span>
+      <ClassNames>
+        {({ css, cx }) => (
+          <span
+            key={i.type.name}
+            className={"mr-1 last:mr-0 p-1 rounded bg-" + i.type.name}
+            css={cx(css(contrastTextStyle), css(bgPokemonType))}
+          >
+            {i.type.name.charAt(0).toUpperCase() + i.type.name.slice(1)}
+          </span>
+        )}
+      </ClassNames>
     );
   });
 

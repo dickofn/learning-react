@@ -9,7 +9,10 @@ import { faGem as farGem } from "@fortawesome/free-regular-svg-icons";
 
 /** @jsxImportSource @emotion/react */
 import { css, ClassNames } from "@emotion/react";
-import { getContrastTextColorByType } from "../helper/pokemon-helper";
+import {
+  getColorByType,
+  getContrastTextColorByType,
+} from "../helper/pokemon-helper";
 
 import Loader from "../components/Loader";
 import Summary from "../components/pokemon/Summary";
@@ -83,77 +86,85 @@ function Pokemon() {
       color: ${getContrastTextColorByType(pokemonType)};
     `;
 
-    content = (
-      <div className="px-4">
-        <h1
-          className={
-            "relative -mx-4 py-3 text-2xl font-bold mb-3 uppercase text-center bg-" +
-            pokemonType
-          }
-          css={contrastTextStyle}
-        >
-          <div className="absolute left-0 top-0 bottom-0 flex items-center ml-4">
-            <Link to="/">
-              <FontAwesomeIcon icon={faChevronLeft} css={contrastTextStyle} />
-            </Link>
-          </div>
-          {data.pokemon.name}
-        </h1>
-        <div className="mb-4">
-          <img
-            src={
-              isShiny
-                ? data.pokemon.sprites.front_shiny
-                : data.pokemon.sprites.front_default
-            }
-            alt={data.pokemon.name}
-            className="mx-auto h-40 w-40"
-          />
-        </div>
-        <div className="text-right mb-4">
-          <button
-            onClick={() => setIsShiny(!isShiny)}
-            className={
-              "rounded-full py-3 px-6 transition-all duration-200 focus:outline-none focus:bg-opacity-90 hover:bg-opacity-90 bg-" +
-              pokemonType
-            }
-            css={contrastTextStyle}
-          >
-            <div className="flex justify-center items-center">
-              <FontAwesomeIcon
-                icon={isShiny ? faGem : farGem}
-                className="text-2xl mr-2"
-              />
-              <div className="font-bold">Shiny</div>
-            </div>
-          </button>
-        </div>
+    const bgPokemonType = css`
+      background-color: ${getColorByType(pokemonType)};
+    `;
 
-        <ClassNames>
-          {({ css, cx }) => (
+    const borderPokemonType = css`
+      border-color: ${getColorByType(pokemonType)};
+    `;
+
+    content = (
+      <ClassNames>
+        {({ css, cx }) => (
+          <div className="px-4">
+            <h1
+              className="relative -mx-4 py-3 text-2xl font-bold mb-3 uppercase text-center"
+              css={cx(css(contrastTextStyle), css(bgPokemonType))}
+            >
+              <div className="absolute left-0 top-0 bottom-0 flex items-center ml-4">
+                <Link to="/">
+                  <FontAwesomeIcon
+                    icon={faChevronLeft}
+                    css={contrastTextStyle}
+                  />
+                </Link>
+              </div>
+              {data.pokemon.name}
+            </h1>
+
+            <div className="mb-4">
+              <img
+                src={
+                  isShiny
+                    ? data.pokemon.sprites.front_shiny
+                    : data.pokemon.sprites.front_default
+                }
+                alt={data.pokemon.name}
+                className="mx-auto h-40 w-40"
+              />
+            </div>
+            <div className="text-right mb-4">
+              <button
+                onClick={() => setIsShiny(!isShiny)}
+                className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none focus:bg-opacity-90 hover:bg-opacity-90"
+                css={cx(css(contrastTextStyle), css(bgPokemonType))}
+              >
+                <div className="flex justify-center items-center">
+                  <FontAwesomeIcon
+                    icon={isShiny ? faGem : farGem}
+                    className="text-2xl mr-2"
+                  />
+                  <div className="font-bold">Shiny</div>
+                </div>
+              </button>
+            </div>
+
             <Tabs
               selectedTabClassName={cx(
                 css(contrastTextStyle),
-                `bg-${pokemonType} border-b-0`
+                css(bgPokemonType),
+                " border-b-0"
               )}
-              selectedTabPanelClassName={
-                "border mt-2 rounded px-4  border-" + pokemonType
-              }
+              selectedTabPanelClassName={cx(
+                css(borderPokemonType),
+                "border mt-2 rounded px-4"
+              )}
             >
               <TabList className="flex font-medium">
                 <Tab
-                  className={
-                    "w-1/2 border py-3 rounded text-center border-" +
-                    pokemonType
-                  }
+                  className={cx(
+                    css(borderPokemonType),
+                    "w-1/2 border py-3 rounded text-center mr-1"
+                  )}
                 >
                   Summary
                 </Tab>
                 <Tab
-                  className={
-                    "w-1/2 border py-3 rounded text-center mx-2 border-" +
-                    pokemonType
-                  }
+                  className={cx(
+                    css(borderPokemonType),
+                    "w-1/2 border py-3 rounded text-center ml-1"
+                  )}
                 >
                   Moves
                 </Tab>
@@ -166,9 +177,9 @@ function Pokemon() {
                 <Move data={data.pokemon} />
               </TabPanel>
             </Tabs>
-          )}
-        </ClassNames>
-      </div>
+          </div>
+        )}
+      </ClassNames>
     );
   }
 
