@@ -114,15 +114,24 @@ function Pokemon() {
             </h1>
 
             <div className="mb-4">
-              <img
-                src={
-                  isShiny
-                    ? data.pokemon.sprites.front_shiny
-                    : data.pokemon.sprites.front_default
-                }
-                alt={data.pokemon.name}
-                className="mx-auto h-40 w-40"
-              />
+              <div className="relative h-40 w-40 mx-auto">
+                <img
+                  src={data.pokemon.sprites.front_default}
+                  alt={data.pokemon.name}
+                  className={
+                    "absolute top-0 left-0 right-0 bottom-0 mx-auto h-40 w-40  transition-all duration-200 " +
+                    (isShiny ? "opacity-0" : "")
+                  }
+                />
+                <img
+                  src={data.pokemon.sprites.front_shiny}
+                  alt={data.pokemon.name}
+                  className={
+                    "absolute top-0 left-0 right-0 bottom-0 mx-auto h-40 w-40 transition-all duration-200 " +
+                    (isShiny ? "" : "opacity-0")
+                  }
+                />
+              </div>
             </div>
             <div className="text-right mb-4">
               <button
