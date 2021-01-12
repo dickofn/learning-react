@@ -18,10 +18,9 @@ function Summary(props) {
     `;
 
     return (
-      <ClassNames>
+      <ClassNames key={i.type.name}>
         {({ css, cx }) => (
           <span
-            key={i.type.name}
             className={"mr-1 last:mr-0 p-1 rounded bg-" + i.type.name}
             css={cx(css(contrastTextStyle), css(bgPokemonType))}
           >
