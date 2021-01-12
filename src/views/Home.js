@@ -66,7 +66,7 @@ function Home() {
       );
     } else {
       prevBtn = (
-        <Link to={"/?offset=" + prevOffset} className="text-gray-900 border border-gray-900 rounded-full h-10 w-10 flex justify-center items-center">
+        <Link to={"/?offset=" + prevOffset} className="text-white bg-gray-800 rounded-full h-10 w-10 flex justify-center items-center">
           <FontAwesomeIcon icon={faChevronLeft} />
         </Link>
       );
@@ -80,7 +80,7 @@ function Home() {
       );
     } else {
       nextBtn = (
-        <Link to={"/?offset=" + nextOffset} className="text-gray-900 border border-gray-900 rounded-full h-10 w-10 flex justify-center items-center">
+        <Link to={"/?offset=" + nextOffset} className="text-white bg-gray-800 rounded-full h-10 w-10 flex justify-center items-center">
           <FontAwesomeIcon icon={faChevronRight} />
         </Link>
       );
@@ -95,14 +95,14 @@ function Home() {
             </div>
           ))}
         </div>
-        <div className="flex justify-between px-20">
+        <div className="sticky bottom-0 pb-20 flex justify-between px-20">
           {prevBtn} {nextBtn}
         </div>
       </div>
     );
   }
 
-  return <div className="p-4">{content}</div>;
+  return <div className="p-4 pb-2">{content}</div>;
 }
 
 export default Home;

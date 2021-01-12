@@ -44,7 +44,7 @@ function PokemonListCard(props) {
 
   if (loading) {
     content = (
-      <div className="p-4 border border-gray-900 mb-4 rounded">
+      <div className="p-4 border border-gray-800 mb-4 rounded">
         <Loader />
       </div>
     );

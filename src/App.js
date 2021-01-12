@@ -8,7 +8,7 @@ import Pokemon from "./views/Pokemon";
 
 function App() {
   return (
-    <div className="relative pb-8 min-h-screen">
+    <div className="relative min-h-screen">
       <Router basename="/learning-react">
         <Header />
 
@@ -18,7 +18,9 @@ function App() {
           </Route>
 
           <Route path="/pokemon/:id">
-            <Pokemon />
+            <div className="pb-20">
+              <Pokemon />
+            </div>
           </Route>
 
           <Route path="/about">

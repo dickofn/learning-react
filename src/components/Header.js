@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import Navigation from "./Navigation";
 
 function Header() {
   return (
-    <header className="border-b border-gray-900 p-3 flex justify-between items-center">
-      <Link className="font-bold uppercase font-mono" to="/">Maybe Pokedex</Link>
+    <header className="bg-gray-800 text-white p-4 text-center">
+      <Link className="font-bold uppercase font-mono text-xl" to="/">
+        Maybe Pokedex
+      </Link>
+      <Navigation />
     </header>
   );
 }
