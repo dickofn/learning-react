@@ -21,21 +21,27 @@ function App() {
 
           <Switch>
             <Route exact path="/">
-              <Home />
+              <div className="lg:pt-20">
+                <Home />
+              </div>
             </Route>
 
             <Route path="/pokemon/:id">
-              <div className="pb-20">
+              <div className="pb-20 lg:pb-0 lg:pt-20">
                 <Pokemon />
               </div>
             </Route>
 
             <Route path="/my/pokemon/:nickname">
-              <MyPokemonDetail />
+              <div className="pb-20 lg:pb-0 lg:pt-20">
+                <MyPokemonDetail />
+              </div>
             </Route>
 
             <Route path="/my">
-              <MyPokemonsList />
+              <div className="lg:pt-20">
+                <MyPokemonsList />
+              </div>
             </Route>
 
             <Route path="/about">

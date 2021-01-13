@@ -101,7 +101,7 @@ function Home() {
             </div>
           ))}
         </div>
-        <div className="sticky xl:relative bottom-0 pb-20 xl:pb-24 flex justify-between px-20 md:w-10/12 lg:w-3/4 xl:w-1/2 md:mx-auto">
+        <div className="sticky xl:relative bottom-0 pb-20 lg:pb-5 flex justify-between px-20 md:w-10/12 lg:w-3/4 xl:w-1/2 md:mx-auto">
           {prevBtn} {nextBtn}
         </div>
       </div>
