@@ -12,7 +12,7 @@ function PopUp(props) {
   function handleSubmit() {
     const data = {
       name: props.name,
-      nickname: value ? value.toLowerCase() : props.name,
+      nickname: value ? value.toLowerCase().trim() : props.name,
     };
     let errCheck = false;
     pokemons.forEach((i) => {
