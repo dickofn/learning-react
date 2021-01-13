@@ -50,7 +50,7 @@ function PopUp(props) {
 
   if (props.isMy) {
     content = (
-      <div className="bg-white w-11/12 rounded">
+      <div className="bg-white w-11/12 rounded max-w-screen-sm">
         <div className="font-medium p-4 border-b border-gray-800">
           Are you sure?
         </div>
@@ -72,7 +72,7 @@ function PopUp(props) {
     );
   } else if (props.name === "01") {
     content = (
-      <div className="bg-white w-11/12 rounded">
+      <div className="bg-white w-11/12 rounded max-w-screen-sm">
         <div className="font-medium p-4 border-b border-gray-800">
           You caught a nothing
         </div>
@@ -88,7 +88,7 @@ function PopUp(props) {
     );
   } else {
     content = (
-      <div className="bg-white w-11/12 rounded">
+      <div className="bg-white w-11/12 rounded max-w-screen-sm">
         <div className="font-medium p-4 border-b border-gray-800">
           You caught a {props.name.toUpperCase()}
         </div>

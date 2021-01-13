@@ -66,7 +66,10 @@ function Home() {
       );
     } else {
       prevBtn = (
-        <Link to={"/?offset=" + prevOffset} className="text-white bg-gray-800 rounded-full h-10 w-10 flex justify-center items-center">
+        <Link
+          to={"/?offset=" + prevOffset}
+          className="text-white bg-gray-800 rounded-full h-10 w-10 flex justify-center items-center"
+        >
           <FontAwesomeIcon icon={faChevronLeft} />
         </Link>
       );
@@ -80,7 +83,10 @@ function Home() {
       );
     } else {
       nextBtn = (
-        <Link to={"/?offset=" + nextOffset} className="text-white bg-gray-800 rounded-full h-10 w-10 flex justify-center items-center">
+        <Link
+          to={"/?offset=" + nextOffset}
+          className="text-white bg-gray-800 rounded-full h-10 w-10 flex justify-center items-center"
+        >
           <FontAwesomeIcon icon={faChevronRight} />
         </Link>
       );
@@ -88,14 +94,14 @@ function Home() {
 
     content = (
       <div>
-        <div className="mb-5">
+        <div className="mb-5 md:flex md:flex-wrap">
           {data.pokemons.results.map((i) => (
-            <div key={i.name}>
+            <div className="md:w-1/2 md:px-2 xl:w-1/4" key={i.name}>
               <PokemonListCard pokemon={i} />
             </div>
           ))}
         </div>
-        <div className="sticky bottom-0 pb-20 flex justify-between px-20">
+        <div className="sticky xl:relative bottom-0 pb-20 xl:pb-24 flex justify-between px-20 md:w-10/12 lg:w-3/4 xl:w-1/2 md:mx-auto">
           {prevBtn} {nextBtn}
         </div>
       </div>

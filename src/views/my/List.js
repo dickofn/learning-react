@@ -8,9 +8,9 @@ function List() {
 
   return (
     <div className="p-4">
-      <div className="mb-5">
+      <div className="mb-5 md:flex md:flex-wrap">
         {pokemons.map((i) => (
-          <div key={i.nickname}>
+          <div className="md:w-1/2 md:px-2 xl:w-1/4" key={i.nickname}>
             <PokemonListCard pokemon={i} isMy={true} />
           </div>
         ))}
