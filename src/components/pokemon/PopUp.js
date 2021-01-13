@@ -36,6 +36,10 @@ function PopUp(props) {
     props.toggle();
   }
 
+  function handleRelease() {
+    props.release();
+  }
+
   const errorMsg = (
     <div className="text-red-500 text-xs mt-2">
       there is a pokemon with same nickname, please change!
@@ -44,7 +48,29 @@ function PopUp(props) {
 
   let content = "";
 
-  if (props.name === "01") {
+  if (props.isMy) {
+    content = (
+      <div className="bg-white w-11/12 rounded">
+        <div className="font-medium p-4 border-b border-gray-800">
+          Are you sure?
+        </div>
+        <div className="text-right p-4">
+          <button
+            className="py-2 px-4 bg-red-800 rounded text-white hover:bg-opacity-80 mr-2"
+            onClick={() => handleRelease()}
+          >
+            Release
+          </button>
+          <button
+            className="py-2 px-4 bg-gray-800 rounded text-white hover:bg-opacity-80"
+            onClick={() => handleClose()}
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    );
+  } else if (props.name === "01") {
     content = (
       <div className="bg-white w-11/12 rounded">
         <div className="font-medium p-4 border-b border-gray-800">

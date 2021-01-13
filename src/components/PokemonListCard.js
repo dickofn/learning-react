@@ -78,14 +78,20 @@ function PokemonListCard(props) {
             className="border mb-4 rounded"
             css={cx(css(borderPokemonType), css(contrastTextStyle))}
           >
-            <Link to={`/pokemon/${pokemon.name}?fromOffset=${offset}`}>
+            <Link
+              to={
+                props.isMy
+                  ? `/my/pokemon/${pokemon.nickname}`
+                  : `/pokemon/${pokemon.name}?fromOffset=${offset}`
+              }
+            >
               <div
                 className="border-b uppercase font-medium p-3 text-center relative"
                 css={cx(css(borderPokemonType), css(bgPokemonType))}
               >
-                {pokemon.name}
+                {pokemon.name} {pokemon.nickname ? `(${pokemon.nickname})` : ""}
                 <span className="absolute top-0 left-0 bottom-0 p-3">
-                  #{pokemon.id}
+                  {pokemon.id ? `#${pokemon.id}` : ""}
                 </span>
               </div>
               <img

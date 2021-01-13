@@ -35,6 +35,34 @@ function Index(props) {
 
   const [isShiny, setIsShiny] = useState(false);
 
+  function CatchButton() {
+    return (
+      <button
+        onClick={() => props.catchClicked(props.pokemon.name)}
+        className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none bg-gray-800 text-white"
+      >
+        <div className="flex justify-center items-center">
+          <img src={imgPokeball} alt="Pokeball" className="h-6 w-6 mr-2"></img>
+          <div className="font-bold">Catch</div>
+        </div>
+      </button>
+    );
+  }
+
+  function ReleaseButton() {
+    return (
+      <button
+        onClick={() => props.releaseClicked(props.nickname)}
+        className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none bg-red-800 text-white"
+      >
+        <div className="flex justify-center items-center">
+          <img src={imgPokeball} alt="Pokeball" className="h-6 w-6 mr-2"></img>
+          <div className="font-bold">Release</div>
+        </div>
+      </button>
+    );
+  }
+
   return (
     <ClassNames>
       {({ css, cx }) => (
@@ -45,12 +73,18 @@ function Index(props) {
           >
             <div className="absolute left-0 top-0 bottom-0 flex items-center ml-4">
               <Link
-                to={`/${props.fromOffset ? "?offset=" + props.fromOffset : ""}`}
+                to={
+                  props.isMy
+                    ? "/my"
+                    : `/${
+                        props.fromOffset ? "?offset=" + props.fromOffset : ""
+                      }`
+                }
               >
                 <FontAwesomeIcon icon={faChevronLeft} css={contrastTextStyle} />
               </Link>
             </div>
-            {props.pokemon.name}
+            {props.pokemon.name} {props.isMy ? `(${props.nickname})` : ""}
           </h1>
 
           <div className="mb-4">
@@ -74,19 +108,7 @@ function Index(props) {
             </div>
           </div>
           <div className="flex justify-between items-center mb-4">
-            <button
-              onClick={() => props.catchClicked(props.pokemon.name)}
-              className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none bg-gray-800 text-white"
-            >
-              <div className="flex justify-center items-center">
-                <img
-                  src={imgPokeball}
-                  alt="Pokeball"
-                  className="h-6 w-6 mr-2"
-                ></img>
-                <div className="font-bold">Catch</div>
-              </div>
-            </button>
+            {props.isMy ? <ReleaseButton /> : <CatchButton />}
             <button
               onClick={() => setIsShiny(!isShiny)}
               className="rounded-full py-3 px-6 transition-all duration-200 focus:outline-none"
