@@ -13,7 +13,7 @@ function Navigation() {
         to="/my"
         className="font-mono uppercase tracking-widest w-1/2 text-center p-5 bg-gray-800 text-white"
       >
-        My Pokemon
+        My Pokemons
       </Link>
     </div>
   );
