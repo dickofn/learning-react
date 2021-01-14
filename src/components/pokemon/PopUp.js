@@ -74,7 +74,7 @@ function PopUp(props) {
     content = (
       <div className="bg-white w-11/12 rounded max-w-screen-sm">
         <div className="font-medium p-4 border-b border-gray-800">
-          You caught a nothing
+          You catch nothing
         </div>
         <div className="text-right p-4">
           <button
