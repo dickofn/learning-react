@@ -1,8 +1,6 @@
 function Move(props) {
   const data = props.data;
 
-  console.log(data);
-
   const abilities = data.abilities.map((i) => {
     const abilityName = (
       i.ability.name.charAt(0).toUpperCase() + i.ability.name.slice(1)
