@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Navigation() {
   return (
-    <div className="fixed lg:relative bottom-0 left-0 right-0 flex justify-around z-10">
+    <nav className="fixed lg:relative bottom-0 left-0 right-0 flex justify-around z-10">
       <Link
         to="/"
         className="font-mono uppercase tracking-widest w-1/2 lg:w-auto text-center p-5 lg:p-3 bg-gray-800 text-white border-r border-gray-900"
@@ -15,7 +15,7 @@ function Navigation() {
       >
         My Pokemons
       </Link>
-    </div>
+    </nav>
   );
 }
 
