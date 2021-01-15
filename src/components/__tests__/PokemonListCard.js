@@ -119,7 +119,7 @@ test("renders componen pokemon-list-card error", async () => {
   await waitFor(() => {
     expect(loader).not.toBeInTheDocument();
 
-    const pokemonName = screen.getByText("There's an error found, try refreshing");
-    expect(pokemonName).toBeInTheDocument();
+    const errMsg = screen.getByText("There's an error found, try refreshing");
+    expect(errMsg).toBeInTheDocument();
   });
 });
