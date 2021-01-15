@@ -25,7 +25,7 @@ function Loader() {
 
   return (
     <div className="flex justify-center">
-      <div css={loaderStyle}></div>
+      <div data-testid="loaderSpinner" css={loaderStyle}></div>
     </div>
   );
 }

@@ -1,10 +1,10 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 
 import Loader from "../Loader";
 
 test("renders component loader", () => {
-  const { container } = render(<Loader />);
-  const loaderClass = container.firstChild.firstChild.classList.value;
+  render(<Loader />);
+  const loader = screen.getByTestId("loaderSpinner");
 
-  expect(loaderClass).toContain("Loader");
+  expect(loader).toBeInTheDocument();
 });
