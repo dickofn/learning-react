@@ -48,7 +48,9 @@ function Home() {
   }
 
   if (error) {
-    content = <div className="text-red-500"> Error </div>;
+    content = (
+      <div className="text-red-500">There's an error found, try refreshing</div>
+    );
   }
 
   if (data) {
